@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <!-- Example grid collection source type configuration -->
+    <source>
+        <collection>\Magento\Cms\Model\ResourceModel\Block\Collection</collection>
+    </source>
+    <columns>
+        <include>
+            <column name="id"/>
+            <column name="identifier"/>
+            <column name="store_id" type="store_id"/>
+            <column name="active" label="Status">
+                <option value="0" label="Disabled"/>
+                <option value="1" label="Enabled"/>
+            </column>
+            <column name="creation_time" type="datetime"/>
+            <column name="update_time" type="datetime"/>
+        </include>
+    </columns>
+    <actions idColumn="id">
+        <action id="edit" label="Edit" url="cms/block/edit" idParam="block_id"/>
+    </actions>
+</grid>

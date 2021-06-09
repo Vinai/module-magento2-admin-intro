@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <!-- Example grid array source type configuration -->
+    <source>
+        <arrayProvider>\Hyva\AdminIntro\Model\CmsBlockArrayProvider</arrayProvider>
+    </source>
+    <columns>
+        <include>
+            <column name="block_id" label="Id"/>
+            <column name="identifier"/>
+            <column name="store_id" type="store_id"/>
+            <column name="is_active" label="Status">
+                <option value="0" label="Disabled"/>
+                <option value="1" label="Enabled"/>
+            </column>
+            <column name="creation_time" type="datetime"/>
+            <column name="update_time" type="datetime"/>
+        </include>
+    </columns>
+    <actions idColumn="block_id">
+        <action id="edit" label="Edit" url="cms/block/edit" idParam="block_id"/>
+    </actions>
+</grid>

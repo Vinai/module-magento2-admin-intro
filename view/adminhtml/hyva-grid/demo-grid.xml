@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <!-- Example grid repository source type configuration -->
+    <source>
+        <repositoryListMethod>\Magento\Cms\Api\BlockRepositoryInterface::getList</repositoryListMethod>
+    </source>
+    <columns>
+        <include>
+            <column name="id"/>
+            <column name="identifier"/>
+            <column name="active" label="Status" source="\Hyva\AdminIntro\Model\Entity\Attribut\Source\StatusSource"/>
+            <column name="creation_time" type="datetime"/>
+            <column name="update_time" type="datetime"/>
+        </include>
+    </columns>
+    <actions idColumn="id">
+        <action id="edit" label="Edit" url="cms/block/edit" idParam="block_id"/>
+    </actions>
+</grid>

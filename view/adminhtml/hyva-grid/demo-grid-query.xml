@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <!-- Example grid query source type configuration -->
+    <source>
+        <query>
+            <select>
+                <from table="cms_block" as="main_table"/>
+                <columns>
+                    <column name="block_id" as="id"/>
+                    <column name="identifier"/>
+                    <column name="title"/>
+                    <column name="is_active" as="status"/>
+                    <column name="creation_time" as="created"/>
+                    <column name="update_time" as="updated"/>
+                </columns>
+                <join table="cms_block_store" as="t_store">
+                    <on>main_table.block_id=t_store.block_id</on>
+                    <columns>
+                        <expression as="store_view">GROUP_CONCAT(t_store.store_id SEPARATOR ',')</expression>
+                    </columns>
+                </join>
+                <groupBy>
+                    <column name="main_table.block_id"/>
+                </groupBy>
+            </select>
+        </query>
+    </source>
+    <columns>
+        <include>
+            <column name="id"/>
+            <column name="identifier"/>
+            <column name="store_view" type="store_id"/>
+            <column name="status" label="Status">
+                <option value="0" label="Disabled"/>
+                <option value="1" label="Enabled"/>
+            </column>
+            <column name="created" type="datetime"/>
+            <column name="updated" type="datetime"/>
+        </include>
+    </columns>
+    <actions idColumn="id">
+        <action id="edit" label="Edit" url="cms/block/edit" idParam="block_id"/>
+    </actions>
+</grid>
